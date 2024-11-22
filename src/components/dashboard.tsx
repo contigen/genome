@@ -1,85 +1,10 @@
-// 'use client'
-
-// import { Card, CardContent, CardHeader, CardTitle } from "&/components/ui/card"
-// import { Button } from "&/components/ui/button"
-// import { BarChart, FileUp, Activity } from 'lucide-react'
-
-// export function DashboardComponent() {
-//   return (
-//     <div className="space-y-6">
-//       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//         <Card>
-//           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-//             <CardTitle className="text-sm font-medium">Genes Analyzed</CardTitle>
-//             <BarChart className="h-4 w-4 text-muted-foreground" />
-//           </CardHeader>
-//           <CardContent>
-//             <div className="text-2xl font-bold">10,000</div>
-//           </CardContent>
-//         </Card>
-//         <Card>
-//           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-//             <CardTitle className="text-sm font-medium">Reports Generated</CardTitle>
-//             <FileUp className="h-4 w-4 text-muted-foreground" />
-//           </CardHeader>
-//           <CardContent>
-//             <div className="text-2xl font-bold">5</div>
-//           </CardContent>
-//         </Card>
-//         <Card>
-//           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-//             <CardTitle className="text-sm font-medium">Active Analyses</CardTitle>
-//             <Activity className="h-4 w-4 text-muted-foreground" />
-//           </CardHeader>
-//           <CardContent>
-//             <div className="text-2xl font-bold">3</div>
-//           </CardContent>
-//         </Card>
-//       </section>
-
-//       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Upload New Dataset</CardTitle>
-//           </CardHeader>
-//           <CardContent>
-//             <Button className="w-full">
-//               <FileUp className="mr-2 h-4 w-4" /> Upload Data
-//             </Button>
-//           </CardContent>
-//         </Card>
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>View Reports</CardTitle>
-//           </CardHeader>
-//           <CardContent>
-//             <Button variant="outline" className="w-full">
-//               <BarChart className="mr-2 h-4 w-4" /> View Reports
-//             </Button>
-//           </CardContent>
-//         </Card>
-//         <Card>
-//           <CardHeader>
-//             <CardTitle>Run Analysis</CardTitle>
-//           </CardHeader>
-//           <CardContent>
-//             <Button variant="secondary" className="w-full">
-//               <Activity className="mr-2 h-4 w-4" /> Start Analysis
-//             </Button>
-//           </CardContent>
-//         </Card>
-//       </section>
-//     </div>
-//   )
-// }
-
 'use client'
 
 import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '&/components/ui/card'
 import { Button } from '&/components/ui/button'
 import { Progress } from '&/components/ui/progress'
-import { Dna, Activity, FileText, Lightbulb } from 'lucide-react'
+import { Dna, Activity, FileText, Lightbulb, Brain, Zap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -107,6 +32,14 @@ export function Dashboard() {
 
   return (
     <div className='space-y-6'>
+      <section className='bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 rounded-lg shadow-lg'>
+        <h1 className='text-3xl font-bold mb-2'>
+          Hello, User! Ready to explore your genetic insights?
+        </h1>
+        <p className='text-xl'>
+          Your journey to understanding your DNA starts here.
+        </p>
+      </section>
       <h2 className='text-3xl font-bold'>Welcome to Your Genome Dashboard</h2>
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
@@ -247,6 +180,27 @@ export function Dashboard() {
                 </span>
               </li>
             </ul>
+          </CardContent>
+        </AnimatedCard>
+        <AnimatedCard
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <CardHeader>
+            <CardTitle>Latest Insights</CardTitle>
+          </CardHeader>
+          <CardContent className='space-y-2'>
+            <div className='flex items-center space-x-2'>
+              <Brain className='h-4 w-4 text-blue-500' />
+              <span>Your cognitive function genes show high potential.</span>
+            </div>
+            <div className='flex items-center space-x-2'>
+              <Zap className='h-4 w-4 text-yellow-500' />
+              <span>
+                New recommendations for improving heart health available.
+              </span>
+            </div>
           </CardContent>
         </AnimatedCard>
       </div>

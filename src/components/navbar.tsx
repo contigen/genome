@@ -4,14 +4,26 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '&/lib/utils'
 import { Button } from '&/components/ui/button'
-import { Dna, BarChart2, FileText, Lightbulb, Upload } from 'lucide-react'
+import {
+  Dna,
+  BarChart2,
+  FileText,
+  Upload,
+  BookOpen,
+  Settings,
+  Heart,
+  Home,
+} from 'lucide-react'
 
 const navItems = [
-  { name: 'Dashboard', href: '/dashboard', icon: BarChart2 },
-  { name: 'Upload', href: '/upload', icon: Upload },
-  { name: 'Analysis', href: '/analysis', icon: Dna },
-  { name: 'Reports', href: '/reports', icon: FileText },
-  { name: 'Recommendations', href: '/recommendations', icon: Lightbulb },
+  { name: 'Dashboard', href: '/dashboard', icon: Home },
+  { name: 'Upload Data', href: '/upload', icon: Upload },
+  { name: 'Analysis Report', href: '/analysis', icon: FileText },
+  { name: 'Visualisations', href: '/visualisations', icon: BarChart2 },
+  { name: 'Recommendations', href: '/recommendations', icon: Heart },
+  { name: 'Explore Insights', href: '/explore', icon: Dna },
+  { name: 'Settings', href: '/settings', icon: Settings },
+  { name: 'Resources', href: '/resources', icon: BookOpen },
 ]
 
 export function Navbar() {
@@ -22,7 +34,7 @@ export function Navbar() {
       <div className='flex items-center space-x-4'>
         <Dna className='h-8 w-8 text-blue-500' />
         <Link href='/'>
-          <span className='text-xl font-bold'>Genome</span>
+          <span className='text-xl font-bold text-blue-600'>Genome</span>
         </Link>
       </div>
       <div className='flex space-x-4'>
@@ -33,7 +45,7 @@ export function Navbar() {
               <Button
                 variant={isActive ? 'default' : 'ghost'}
                 className={cn(
-                  'flex items-center space-x-2',
+                  'flex items-center',
                   isActive && 'bg-blue-100 text-blue-800 hover:bg-blue-200'
                 )}
               >
@@ -44,7 +56,6 @@ export function Navbar() {
           )
         })}
       </div>
-      <Button variant='outline'>Sign Out</Button>
     </nav>
   )
 }
