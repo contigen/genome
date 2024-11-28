@@ -12,8 +12,8 @@ import {
 import { Input } from '&/components/ui/input'
 import { Button } from '&/components/ui/button'
 import { Label } from '&/components/ui/label'
-import { Checkbox } from '&/components/ui/checkbox'
 import { ArrowRight, LockIcon, MailIcon } from 'lucide-react'
+import { signIn } from 'next-auth/react'
 
 const InputField = ({ icon: Icon, ...props }) => (
   <div className='relative'>
@@ -26,12 +26,16 @@ const InputField = ({ icon: Icon, ...props }) => (
 )
 
 export function SignInForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState(``)
+  const [password, setPassword] = useState(``)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Sign in with:', email, password)
+  const handleSubmit = (evt: React.FormEvent) => {
+    evt.preventDefault()
+    signIn(`credentials`, {
+      email,
+      password,
+      redirectTo: `/dashboard`,
+    })
   }
 
   return (
