@@ -1,3 +1,41 @@
+# Genome
+
+Genome is a web app that empowers users to understand and act on their genetic predispositions. By leveraging AI-driven analysis of genetic markers, it offers:
+
+1. Secure Data Upload: Easy submission of genetic data files.
+2. Comprehensive Dashboard: At-a-glance view of genetic risks and health scores.
+3. In-Depth Analysis: Detailed exploration of genetic markers and their implications.
+4. Personalized Recommendations: Tailored health and lifestyle advice.
+5. Interactive Insights: User-friendly visualizations of genetic patterns.
+6. Privacy-Focused Design: Secure, user-controlled data management.
+
+From upload to actionable insights, Genome transforms complex genetic data into clear, personalized health guidance, all within an intuitive, multi-page web interface.
+
+Intro
+
+## Technologies
+
+- Next.js
+- TypeScript
+- TailwindCSS
+- Framer Motion for smoothly animated components
+- Radix UI
+- Gemini AI for genetic data analyis
+- NextAuth as auth library
+- Zod schema for AI strucutured out
+
+## Features
+
+1. Secure data upload for genetic information
+2. AI-powered analysis of genetic markers using Google's Gemini AI
+3. A comprehensive dashboard displaying overall health scores and key risk factors
+4. Detailed analysis of specific genetic markers and their implications
+5. Personalized health and lifestyle recommendations
+6. Interactive visualizations of genetic data and risk factors
+7. Privacy-focused design with local storage for data persistence
+
+## Future updates
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
