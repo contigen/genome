@@ -48,7 +48,7 @@ const RiskVisualizationChart: React.FC<RiskVisualizationProps> = ({
               fillOpacity={0.6}
             />
             <Tooltip
-              formatter={value => [`${value.toFixed(2)}%`, 'Risk Level']}
+              formatter={value => [Number(value).toFixed(2), 'Risk Level']}
             />
           </RadarChart>
         </ResponsiveContainer>
