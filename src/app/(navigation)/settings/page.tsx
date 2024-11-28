@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '&/components/ui/card'
 import { Input } from '&/components/ui/input'
 import { Button } from '&/components/ui/button'
@@ -8,15 +9,68 @@ import { Switch } from '&/components/ui/switch'
 import { Label } from '&/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '&/components/ui/tabs'
 import { motion } from 'framer-motion'
-import { User, Bell, Lock, Download, Trash2 } from 'lucide-react'
+import { Download, Trash2 } from 'lucide-react'
+import { useGeneticData } from '&/app/genetic-data-context'
+import { toast } from '&/hooks/use-toast'
 
 const AnimatedCard = motion(Card)
 
 export default function Settings() {
-  const [name, setName] = useState('John Doe')
-  const [email, setEmail] = useState('john.doe@example.com')
-  const [emailUpdates, setEmailUpdates] = useState(true)
+  const { geneticData } = useGeneticData()
+  const router = useRouter()
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [emailUpdates, setEmailUpdates] = useState(false)
   const [dataConsent, setDataConsent] = useState(false)
+
+  useEffect(() => {
+    if (!geneticData) {
+      router.push('/upload')
+    }
+  }, [geneticData, router])
+
+  const handleUpdateProfile = () => {
+    toast({
+      title: 'Profile Updated',
+      description: 'Your profile information has been successfully updated.',
+    })
+  }
+
+  const handleUpdateNotifications = () => {
+    toast({
+      title: 'Notification Preferences Updated',
+      description: 'Your notification settings have been saved.',
+    })
+  }
+
+  const handleUpdatePrivacy = () => {
+    toast({
+      title: 'Privacy Settings Updated',
+      description: 'Your privacy preferences have been updated.',
+    })
+  }
+
+  const handleDownloadData = () => {
+    const dataStr = JSON.stringify(geneticData, null, 2)
+    const dataUri =
+      'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
+    const exportFileDefaultName = 'my_genetic_data.json'
+
+    const linkElement = document.createElement('a')
+    linkElement.setAttribute('href', dataUri)
+    linkElement.setAttribute('download', exportFileDefaultName)
+    linkElement.click()
+
+    toast({
+      title: 'Data Downloaded',
+      description: 'Your genetic data has been downloaded successfully.',
+    })
+  }
+
+  if (!geneticData) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className='space-y-6'>
@@ -58,7 +112,7 @@ export default function Settings() {
                       onChange={e => setEmail(e.target.value)}
                     />
                   </div>
-                  <Button>Update Profile</Button>
+                  <Button onClick={handleUpdateProfile}>Update Profile</Button>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -76,6 +130,9 @@ export default function Settings() {
                       onCheckedChange={setEmailUpdates}
                     />
                   </div>
+                  <Button onClick={handleUpdateNotifications} className='mt-4'>
+                    Save Preferences
+                  </Button>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -97,6 +154,9 @@ export default function Settings() {
                     By enabling this, you agree to allow your anonymized genetic
                     data to be used for research purposes.
                   </p>
+                  <Button onClick={handleUpdatePrivacy}>
+                    Update Privacy Settings
+                  </Button>
                 </CardContent>
               </Card>
             </TabsContent>
@@ -113,7 +173,10 @@ export default function Settings() {
           <CardTitle>Data Management</CardTitle>
         </CardHeader>
         <CardContent className='space-y-4'>
-          <Button className='w-full flex items-center justify-center'>
+          <Button
+            className='w-full flex items-center justify-center'
+            onClick={handleDownloadData}
+          >
             <Download className='mr-2 h-4 w-4' />
             Download My Data
           </Button>
