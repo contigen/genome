@@ -14,14 +14,14 @@ import {
   Heart,
   Home,
 } from 'lucide-react'
+import { signOut } from 'next-auth/react'
 
 const navItems = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Upload Data', href: '/upload', icon: Upload },
   { name: 'Analysis Report', href: '/analysis', icon: FileText },
-  { name: 'Visualisations', href: '/visualisations', icon: BarChart2 },
   { name: 'Recommendations', href: '/recommendations', icon: Heart },
-  { name: 'Explore Insights', href: '/explore', icon: Dna },
+  { name: 'Explore Insights', href: '/insights', icon: Dna },
   { name: 'Settings', href: '/settings', icon: Settings },
   { name: 'Resources', href: '/resources', icon: BookOpen },
 ]
@@ -31,7 +31,7 @@ export function Navbar() {
 
   return (
     <nav className='flex justify-between items-center p-4 bg-white border-b'>
-      <div className='flex items-center space-x-4'>
+      <div className='flex items-center space-x-2'>
         <Dna className='h-8 w-8 text-blue-500' />
         <Link href='/'>
           <span className='text-xl font-bold text-blue-600'>Genome</span>
@@ -55,6 +55,13 @@ export function Navbar() {
             </Link>
           )
         })}
+        <Button
+          type='submit'
+          onClick={() => signOut({ redirectTo: `/` })}
+          className='w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white transition-all duration-300'
+        >
+          Sign out
+        </Button>
       </div>
     </nav>
   )
